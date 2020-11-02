@@ -13,10 +13,11 @@ public class Menu {
     }
 
     public void printMenu() {
-        System.out.println(menuHeader);
+        System.out.println("\n" + menuHeader + "\n----------------");
+        System.out.println("Menu: Vælg tal og tryk enter");
 
         for (int i = 0; i < menuItems.length; i++) {
-            System.out.printf("%f. %s\n",i, menuItems[i]);
+            System.out.println(i+1 + ": " + menuItems[i]);
         }
     }
 
@@ -26,7 +27,6 @@ public class Menu {
         int choice = -1; //default value if the choice isn´t made correctly
 
         while(!validChoice) {
-            System.out.println();
             System.out.print(userChoiceText);
 
             if(scanner.hasNextInt()) {
