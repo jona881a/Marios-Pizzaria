@@ -9,7 +9,7 @@ public class FileHandling {
     }
 
     public void orderAddFile(){
-        System.out.println("\nBestillinger:");
+        System.out.println("\nBestillinger:" );
         for(int i = 0; i<orders.size(); i++) {
             int orderNumber = i+1;
             if (orderNumber == 1) {
