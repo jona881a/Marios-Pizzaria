@@ -26,7 +26,7 @@ public class MenuMethods {
         }
         System.out.print("Indtast pizza nummer: ");
         Scanner scanner = new Scanner(System.in);
-        File menuNumber = new File(scanner.nextLine());
+        File menuNumber = new File("Resources/scanner.nextLine()");
         orders.add(menuNumber);
         System.out.println("pizza nummer: " + menuNumber + " tilføjet til bestillinger");
     }
