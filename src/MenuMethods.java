@@ -4,6 +4,11 @@ import java.util.ArrayList;
 public class MenuMethods {
 
     ArrayList<String> orders = new ArrayList<>();
+    FileProcessing fileProcessing = new FileProcessing();
+
+    public void showMenu(){
+        fileProcessing.readFile("Resources/Pizzas");
+    }
 
     public void addOrders(){
         System.out.println("\nBestillinger:");

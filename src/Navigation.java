@@ -6,13 +6,16 @@ public class Navigation {
     FileProcessing fileProcessing = new FileProcessing();
 
     public void navigationMenu(Menu menu) {
+
        while (programIsRunning) {
+
             menu.printMenu();
             int choice = menu.setChoiceOfMenuAndValidateOutput();
+            
             switch (choice) {
 
-                case 1:
-                    fileProcessing.readFile("Resources/Pizzas");
+                case 1: //Vis menu kort
+                    menuMethods.showMenu();
                     break;
                 case 2:
                     menuMethods.addOrders();
