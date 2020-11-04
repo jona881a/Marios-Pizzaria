@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class FileHandling {
+public class MenuMethods {
 
     ArrayList<String> orders = new ArrayList<>();
 

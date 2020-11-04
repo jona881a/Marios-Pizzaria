@@ -2,7 +2,7 @@ public class Navigation {
 
     boolean programIsRunning = true;
 
-    FileHandling fileHandling = new FileHandling();
+    MenuMethods menuMethods = new MenuMethods();
     FileProcessing fileProcessing = new FileProcessing();
 
     public void navigationMenu(Menu menu) {
@@ -15,13 +15,13 @@ public class Navigation {
                     fileProcessing.readFile("Resources/Pizzas");
                     break;
                 case 2:
-                    fileHandling.addOrders();
+                    menuMethods.addOrders();
                     break;
                 case 3:
-                    fileHandling.orderHistoryLogging();
+                    menuMethods.orderHistoryLogging();
                     break;
                 case 4:
-                    fileHandling.removeOrder();
+                    menuMethods.removeOrder();
                     break;
                 case 5:
                     System.exit(0);
