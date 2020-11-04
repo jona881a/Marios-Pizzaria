@@ -15,6 +15,7 @@ public class MenuMethods {
     public void addOrders(){
         System.out.println("\nBestillinger:");
 
+
         for(int i = 0; i < orders.size(); i++) {
 
             int orderNumber = i+1;
@@ -37,7 +38,7 @@ public class MenuMethods {
         }
 
         orders.add(order);
-        System.out.println("pizza nummer: " + order + " tilføjet til bestillinger");
+        System.out.println("pizza nummer: " + fileName + " tilføjet til bestillinger");
     }
 
     public void removeOrder(){
