@@ -4,6 +4,7 @@ public class Main {
         Main main = new Main();
         main.run();
     }
+
     public void run(){
         String menuHeader = "Mario's pizzaria";
         String userChoiceText = "Vælg en menu: ";
