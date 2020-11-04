@@ -1,5 +1,7 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.FileNotFoundException;
 
 
@@ -23,7 +25,15 @@ public class FileProcessing {
         }
     }
 
-    public void writeToFile(String path) {
-        
+    public void writeToFile(String path, String placeOrder) {
+        try{
+            FileWriter writeFile = new FileWriter(path);
+            writeFile.write(placeOrder);
+            writeFile.close();
+
+        } catch (IOException e) {
+            System.err.println("FEJL! Filen findes ikke med den specificerede path");
+            e.printStackTrace();
+        }
     }
 }
