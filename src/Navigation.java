@@ -15,7 +15,7 @@ public class Navigation {
             switch (choice) {
 
                 case 1: //Vis menu kort
-                    fileProcessing.readFile("Resources/Pizzas");
+                    menuMethods.showMenu();
                     break;
                 case 2:
                     menuMethods.addOrders();
