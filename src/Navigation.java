@@ -12,7 +12,7 @@ public class Navigation {
             switch (choice) {
 
                 case 1:
-                    fileProcessing.readFile("Resources/Pizzas");
+                    menuMethods.showMenu();
                     break;
                 case 2:
                     menuMethods.addOrders();
