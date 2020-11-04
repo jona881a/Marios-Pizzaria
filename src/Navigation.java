@@ -3,7 +3,6 @@ public class Navigation {
     boolean programIsRunning = true;
 
     MenuMethods menuMethods = new MenuMethods();
-    FileProcessing fileProcessing = new FileProcessing();
 
     public void navigationMenu(Menu menu) {
 
@@ -23,7 +22,7 @@ public class Navigation {
                 case 3:
                     menuMethods.orderHistoryLogging();
                     break;
-                case 4:
+                case 4: //Fjern bestilling
                     menuMethods.removeOrder();
                     break;
                 case 5:
