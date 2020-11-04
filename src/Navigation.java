@@ -3,6 +3,7 @@ public class Navigation {
     boolean programIsRunning = true;
 
     FileHandling fileHandling = new FileHandling();
+    FileProcessing fileProcessing = new FileProcessing();
 
     public void navigationMenu(Menu menu) {
        while (programIsRunning) {
@@ -11,16 +12,16 @@ public class Navigation {
             switch (choice) {
 
                 case 1:
-                    fileHandling.menuFile();
+                    fileProcessing.readFile("Resources/Pizzas");
                     break;
                 case 2:
-                    fileHandling.orderAddFile();
+                    fileHandling.addOrders();
                     break;
                 case 3:
-                    fileHandling.historyFile();
+                    fileHandling.orderHistoryLogging();
                     break;
                 case 4:
-                    fileHandling.orderRemoveFile();
+                    fileHandling.removeOrder();
                     break;
                 case 5:
                     System.exit(0);

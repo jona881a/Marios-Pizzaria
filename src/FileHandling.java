@@ -1,20 +1,20 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+
 public class FileHandling {
 
     ArrayList<String> orders = new ArrayList<>();
 
-    public void menuFile(){
-
-    }
-
-    public void orderAddFile(){
+    public void addOrders(){
         System.out.println("\nBestillinger:");
+
         for(int i = 0; i<orders.size(); i++) {
+
             int orderNumber = i+1;
+
             if (orderNumber == 1) {
                 System.out.println("Bestilling laves: " + orders.get(i));
-            }else if(orderNumber>1){
+            } else if(orderNumber> 1 ){
                 System.out.println("Bestilling afventer: " + orders.get(i));
             }
         }
@@ -25,12 +25,14 @@ public class FileHandling {
         System.out.println("pizza nummer: " + menuNumber + " tilføjet til bestillinger");
     }
 
-    public void orderRemoveFile(){
+    public void removeOrder(){
         orders.remove(0);
     }
 
-
-    public void historyFile(){
+    /**
+     * HER SKAL VI BRUGE FILEPROCESSING TIL AT SKRIVE TIL FILEN ORDERHISTORY FOR AT GEMME ALLE ORDRE OG DERES BELØB
+     */
+    public void orderHistoryLogging(){
 
     }
 }
