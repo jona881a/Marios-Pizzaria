@@ -1,9 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
 
 public class MenuMethods {
 
-    ArrayList<String> orders = new ArrayList<>();
+    ArrayList<File> orders = new ArrayList<File>();
     FileProcessing fileProcessing = new FileProcessing();
 
     public void showMenu(){
@@ -25,7 +26,7 @@ public class MenuMethods {
         }
         System.out.print("Indtast pizza nummer: ");
         Scanner scanner = new Scanner(System.in);
-        String menuNumber = scanner.nextLine();
+        File menuNumber = new File(scanner.nextLine());
         orders.add(menuNumber);
         System.out.println("pizza nummer: " + menuNumber + " tilføjet til bestillinger");
     }
