@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -14,7 +15,7 @@ public class MenuMethods {
     public void addOrders(){
         System.out.println("\nBestillinger:");
 
-        for(int i = 0; i<orders.size(); i++) {
+        for(int i = 0; i < orders.size(); i++) {
 
             int orderNumber = i+1;
 
@@ -26,9 +27,17 @@ public class MenuMethods {
         }
         System.out.print("Indtast pizza nummer: ");
         Scanner scanner = new Scanner(System.in);
-        File menuNumber = new File("Resources/scanner.nextLine()");
-        orders.add(menuNumber);
-        System.out.println("pizza nummer: " + menuNumber + " tilføjet til bestillinger");
+        String fileName = scanner.nextLine();
+        String pathToOrders = String.format("Resources/Orders/%s.txt",fileName);
+        File order = new File(pathToOrders);
+        try{
+            order.createNewFile();
+        } catch(IOException f) {
+            f.printStackTrace();
+        }
+
+        orders.add(order);
+        System.out.println("pizza nummer: " + order + " tilføjet til bestillinger");
     }
 
     public void removeOrder(){
