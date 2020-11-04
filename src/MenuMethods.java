@@ -5,7 +5,7 @@ import java.io.File;
 
 public class MenuMethods {
 
-    ArrayList<File> orders = new ArrayList<File>();
+    ArrayList<File> orders = new ArrayList<>();
     FileProcessing fileProcessing = new FileProcessing();
 
     public void showMenu(){
@@ -33,11 +33,11 @@ public class MenuMethods {
         File order = new File(pathToOrders);
         try{
             order.createNewFile();
+            orders.add(order);
         } catch(IOException f) {
             f.printStackTrace();
         }
 
-        orders.add(order);
         System.out.println("pizza nummer: " + fileName + " tilføjet til bestillinger");
     }
 
