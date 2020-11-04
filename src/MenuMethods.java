@@ -13,8 +13,8 @@ public class MenuMethods {
     }
 
     public void addOrders(){
-        System.out.println("\nBestillinger:");
 
+        System.out.println("\nBestillinger:");
 
         for(int i = 0; i < orders.size(); i++) {
 
@@ -29,10 +29,13 @@ public class MenuMethods {
         System.out.print("Indtast pizza nummer: ");
         Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
-        String pathToOrders = String.format("Resources/%s.txt",fileName);
+        String pathToOrders = String.format("Resources/pizzaOrders/%s.txt",fileName);
+        String pathToOrderHistory = String.format("Resources/orderHistory/%s.txt",fileName);
         File order = new File(pathToOrders);
+        File orderHistory = new File(pathToOrderHistory);
         try{
             order.createNewFile();
+            orderHistory.createNewFile();
         } catch(IOException f) {
             f.printStackTrace();
         }
@@ -42,7 +45,20 @@ public class MenuMethods {
     }
 
     public void removeOrder(){
-        orders.remove(0);
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < orders.size(); i++){
+            int orderNumber = i;
+            System.out.println("Bestilling " + orderNumber + ": " + orders.get(i));
+
+        }
+        System.out.println("Hviken bestilling vil du fjerne?");
+        System.out.print("Bestilling nummer: ");
+
+        int removeOrderNumber = scanner.nextInt();
+
+        orders.get(removeOrderNumber).delete();
+        orders.remove(removeOrderNumber);
+
     }
 
     /**
