@@ -29,7 +29,7 @@ public class MenuMethods {
         System.out.print("Indtast pizza nummer: ");
         Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
-        String pathToOrders = String.format("Resources/Orders/%s.txt",fileName);
+        String pathToOrders = String.format("Orders/%s.txt",fileName);
         File order = new File(pathToOrders);
         try{
             order.createNewFile();
