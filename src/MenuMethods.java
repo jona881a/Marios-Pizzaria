@@ -7,7 +7,7 @@ public class MenuMethods {
     FileProcessing fileProcessing = new FileProcessing();
 
     public void showMenu(){
-        fileProcessing.readFile("Resources/Pizzas");
+        fileProcessing.readFile("Resources/pizzaMenu");
     }
 
     public void addOrders(){
