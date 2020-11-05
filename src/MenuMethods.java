@@ -33,23 +33,21 @@ public class MenuMethods {
         System.out.print("Indtast pizzanavn(e): ");
         Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
-        Path pizzaOrdersDir = Paths.get(String.format("Resources/pizzaOrders/%s.txt",fileName));
-        Path orderHistoryDir = Paths.get(String.format("Resources/orderHistory/%s.txt",fileName));
-        File order = new File(pizzaOrdersDir.toString());
+        File order = new File(String.format("Resources/pizzaOrders/%s.txt",fileName));
+        File orderHistory = new File(String.format("Resources/orderHistory/%s.txt",fileName));
 
 
         fileProcessing.getPizzaNamesAndPrices(); //Indsætter navne og priser i en arrayliste
         int totalOfOrder = fileProcessing.calculateTotalOfOrder(fileName); //Anvender arraylisten og kalkulere totalet af pizza'erne bestilt
-        fileProcessing.writeToFile(pizzaOrdersDir.toString(),totalOfOrder); //Skriver prisen til dokumentet
+        fileProcessing.writeToFile(order.getPath(),totalOfOrder); //Skriver prisen til dokumentet
+        fileProcessing.writeToFile(orderHistory.getPath(),totalOfOrder); //Skriver det også på orderhistory
 
         try{
             order.createNewFile();
-            Files.copy(pizzaOrdersDir,orderHistoryDir);//@TODO Der er et problem hvis der existere den samme fil, så vil den ikke kopiere den
+            orderHistory.createNewFile();
         } catch(IOException e) {
             e.printStackTrace();
         }
-
-
 
         orders.add(order);
         System.out.println("pizza'er: " + fileName + " tilføjet til bestillinger" + " Bestillingspris: " + totalOfOrder);
