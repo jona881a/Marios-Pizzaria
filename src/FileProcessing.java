@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -6,6 +7,8 @@ import java.io.FileNotFoundException;
 
 
 public class FileProcessing {
+
+    ArrayList<String> pizzasAndPrices = new ArrayList<>();
 
     public void readFile(String path) {
 
@@ -19,21 +22,60 @@ public class FileProcessing {
 
             readFileScanner.close();
 
-        } catch(FileNotFoundException f) {
+        } catch(FileNotFoundException e) {
             System.err.println("FEJL! Filen findes ikke med den specificerede path");
-            f.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public void writeToFile(String path, String placeOrder) {
+    public void writeToFile(String path, int totalOfOrder) {
         try{
             FileWriter writeFile = new FileWriter(path);
-            writeFile.write(placeOrder);
+            writeFile.write("" + totalOfOrder);
             writeFile.close();
 
         } catch (IOException e) {
             System.err.println("FEJL! Filen findes ikke med den specificerede path");
             e.printStackTrace();
         }
+    }
+
+    public void getPizzaNamesAndPrices() {
+
+        try {
+            File file = new File("Resources/pizzaMenu");
+            Scanner scanner = new Scanner(file);
+
+            while(scanner.hasNext()) {
+                String currentLine = scanner.nextLine();
+                pizzasAndPrices.add(currentLine.substring(0,currentLine.indexOf(":")) + "," + currentLine.substring(81,83));
+            }
+
+            scanner.close();
+
+        } catch (FileNotFoundException e) {
+            System.err.println("FEJL! Filen findes ikke med den specificerede path");
+            e.printStackTrace();
+        }
+    }
+
+    public int calculateTotalOfOrder(String fileName) {
+        int total = 0;
+        int currentOrderItem = 0;
+        int i = 0;
+        String[] orderItems = fileName.split(","); //splitter ordrene i hver sit pizzanavn
+
+        while(currentOrderItem < orderItems.length) {
+
+            String currentPizza = pizzasAndPrices.get(i);
+            String[] splitString = currentPizza.split(",");
+
+            if(orderItems[currentOrderItem].equals(splitString[0])) {
+                total += Integer.parseInt(splitString[1]);
+                currentOrderItem++;
+            }
+            i++;
+        }
+        return total;
     }
 }

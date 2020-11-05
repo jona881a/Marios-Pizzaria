@@ -16,19 +16,19 @@ public class Navigation {
                 case 1: //Vis menu kort
                     menuMethods.showMenu();
                     break;
-                case 2:
+                case 2: //tilføj bestillinger
                     menuMethods.addOrders();
                     break;
-                case 3:
+                case 3: //Se ordre historik
                     menuMethods.orderHistoryLogging();
                     break;
                 case 4: //Fjern bestilling
                     menuMethods.removeOrder();
                     break;
-                case 5:
+                case 5: //Afslut program
                     System.exit(0);
                     break;
-                default:
+                default: //Fejl i indtastning
                     System.err.println("- indtast venligst et tal fra menuen! -");
                     break;
             }

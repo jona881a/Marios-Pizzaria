@@ -1,4 +1,8 @@
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -26,22 +30,30 @@ public class MenuMethods {
                 System.out.println("Bestilling afventer: " + orders.get(i));
             }
         }
-        System.out.print("Indtast pizza nummer: ");
+        System.out.print("Indtast pizzanavn(e): ");
         Scanner scanner = new Scanner(System.in);
         String fileName = scanner.nextLine();
-        String pathToOrders = String.format("Resources/pizzaOrders/%s.txt",fileName);
-        String pathToOrderHistory = String.format("Resources/orderHistory/%s.txt",fileName);
-        File order = new File(pathToOrders);
-        File orderHistory = new File(pathToOrderHistory);
+        Path pizzaOrdersDir = Paths.get(String.format("Resources/pizzaOrders/%s.txt",fileName));
+        Path orderHistoryDir = Paths.get(String.format("Resources/orderHistory/%s.txt",fileName));
+        File order = new File(pizzaOrdersDir.toString());
+
+
+        fileProcessing.getPizzaNamesAndPrices(); //Indsætter navne og priser i en arrayliste
+        int totalOfOrder = fileProcessing.calculateTotalOfOrder(fileName); //Anvender arraylisten og kalkulere totalet af pizza'erne bestilt
+        fileProcessing.writeToFile(pizzaOrdersDir.toString(),totalOfOrder); //Skriver prisen til dokumentet
+
         try{
             order.createNewFile();
-            orderHistory.createNewFile();
-        } catch(IOException f) {
-            f.printStackTrace();
+            Files.copy(pizzaOrdersDir,orderHistoryDir);//@TODO Der er et problem hvis der existere den samme fil, så vil den ikke kopiere den
+        } catch(IOException e) {
+            e.printStackTrace();
         }
 
+
+
         orders.add(order);
-        System.out.println("pizza nummer: " + fileName + " tilføjet til bestillinger");
+        System.out.println("pizza'er: " + fileName + " tilføjet til bestillinger" + " Bestillingspris: " + totalOfOrder);
+
     }
 
     public void removeOrder(){
