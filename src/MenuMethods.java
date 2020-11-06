@@ -1,17 +1,24 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
 
 public class MenuMethods {
 
+    int ordersPlaced = 0;
+    int totalRevenue = 0;
     ArrayList<File> orders = new ArrayList<>();
+    ArrayList<File> orderHistory = new ArrayList<>();
     FileProcessing fileProcessing = new FileProcessing();
 
     public void showMenu(){
         fileProcessing.readFile("Resources/pizzaMenu");
     }
 
+    /**
+     *
+     */
     public void addOrders(){
 
         System.out.println("\nBestillinger:");
@@ -46,10 +53,14 @@ public class MenuMethods {
         }
 
         orders.add(order);
+        ordersPlaced++;
         System.out.println("pizza'er: " + fileName + " tilføjet til bestillinger" + " Bestillingspris: " + totalOfOrder);
 
     }
 
+    /**
+     *
+     */
     public void removeOrder(){
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < orders.size(); i++){
@@ -68,9 +79,34 @@ public class MenuMethods {
     }
 
     /**
-     * Måske skal vi rykke oprettelsen af en history file her?
+     *
      */
-    public void orderHistoryLogging(){
+    public void getOrderHistory(){
+        //Her laver vi en liste med alle filer
+        File directory = new File("Resources/orderHistory"); //path til directory
 
+        if(directory.listFiles() != null) { //Check om listen er null
+            orderHistory.addAll(Arrays.asList(directory.listFiles()));
+        }
+        if(orderHistory.size() == 0) { //check om listen er tom
+            System.err.print("\nFEJL! Der er endnu ikke oprettet nogle ordre");
+        } else {
+            //Her displayer vi listen med dens ordre (Filnavn) og beløbet for ordren
+            for (int i = 0; i < orderHistory.size(); i++) {
+                File currentFile = orderHistory.get(i); //den fil vi kigger på på nuværende index af orderHistory
+                System.out.print("\nBestilling: " + currentFile.getName().substring(0,currentFile.getName().indexOf('.'))); //Vi "shaver" .txt af for læsbarhed
+                System.out.print(" beløb: ");
+                fileProcessing.readFile(currentFile.getPath()); //læser det der findes inde i den nuværende fil
+                totalRevenue += Integer.parseInt(fileProcessing.getContentOfFile(currentFile.getPath())); //udregner total omsætning
+                System.out.print(" kr.");
+            }
+        }
+    }
+
+    /**
+     *
+     */
+    public void getStatistics() {
+        System.out.printf("Total omsætning %d kr.\n",totalRevenue);
     }
 }

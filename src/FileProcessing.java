@@ -28,6 +28,27 @@ public class FileProcessing {
         }
     }
 
+    public String getContentOfFile(String path) {
+        StringBuilder sb = new StringBuilder();
+
+        try {
+            File file = new File(path);
+            Scanner readFileScanner = new Scanner(file);
+
+            while(readFileScanner.hasNext()) {
+                sb.append(readFileScanner.nextLine());
+            }
+
+            readFileScanner.close();
+
+        } catch(FileNotFoundException e) {
+            System.err.println("FEJL! Filen findes ikke med den specificerede path");
+            e.printStackTrace();
+        }
+
+        return sb.toString();
+    }
+
     public void writeToFile(String path, int totalOfOrder) {
         try{
             FileWriter writeFile = new FileWriter(path);

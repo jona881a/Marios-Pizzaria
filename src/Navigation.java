@@ -20,12 +20,15 @@ public class Navigation {
                     menuMethods.addOrders();
                     break;
                 case 3: //Se ordre historik
-                    menuMethods.orderHistoryLogging();
+                    menuMethods.getOrderHistory();
                     break;
                 case 4: //Fjern bestilling
                     menuMethods.removeOrder();
                     break;
-                case 5: //Afslut program
+                case 5: //Se statistik
+                    menuMethods.getStatistics();
+                    break;
+                case 6: //Afslut program
                     System.exit(0);
                     break;
                 default: //Fejl i indtastning

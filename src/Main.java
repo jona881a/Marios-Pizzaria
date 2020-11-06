@@ -8,7 +8,7 @@ public class Main {
         //opretter menuen med ønsket indhold
         String menuHeader = "Mario's pizzaria";
         String userChoiceText = "Vælg en menu: ";
-        String[] menuItems = {"Menukort","Bestillinger","Ordrehistorik","Fjern bestilling","Afslut program"};
+        String[] menuItems = {"Menukort","Bestillinger","Ordrehistorik","Fjern bestilling","Se statistik","Afslut program"};
 
         Menu menu = new Menu(menuHeader,userChoiceText,menuItems);
         Navigation navigation = new Navigation();
