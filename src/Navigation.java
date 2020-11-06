@@ -25,10 +25,7 @@ public class Navigation {
                 case 4: //Fjern bestilling
                     menuMethods.removeOrder();
                     break;
-                case 5: //Se statistik
-                    menuMethods.getStatistics();
-                    break;
-                case 6: //Afslut program
+                case 5: //Afslut program
                     System.exit(0);
                     break;
                 default: //Fejl i indtastning

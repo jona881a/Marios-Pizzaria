@@ -7,11 +7,13 @@ import java.io.File;
 public class MenuMethods {
 
     int ordersPlaced = 0;
-    int totalRevenue = 0;
     ArrayList<File> orders = new ArrayList<>();
     ArrayList<File> orderHistory = new ArrayList<>();
     FileProcessing fileProcessing = new FileProcessing();
 
+    /**
+     * Metode til at vise menu
+     */
     public void showMenu(){
         fileProcessing.readFile("Resources/pizzaMenu");
     }
@@ -82,6 +84,9 @@ public class MenuMethods {
      *
      */
     public void getOrderHistory(){
+        int totalRevenue = 0;
+        orderHistory.clear(); //starter listen på en frisk så den ikke duplikere total omsætning
+
         //Her laver vi en liste med alle filer
         File directory = new File("Resources/orderHistory"); //path til directory
 
@@ -94,19 +99,13 @@ public class MenuMethods {
             //Her displayer vi listen med dens ordre (Filnavn) og beløbet for ordren
             for (int i = 0; i < orderHistory.size(); i++) {
                 File currentFile = orderHistory.get(i); //den fil vi kigger på på nuværende index af orderHistory
-                System.out.print("\nBestilling: " + currentFile.getName().substring(0,currentFile.getName().indexOf('.'))); //Vi "shaver" .txt af for læsbarhed
-                System.out.print(" beløb: ");
-                fileProcessing.readFile(currentFile.getPath()); //læser det der findes inde i den nuværende fil
+                String fileContent = fileProcessing.getContentOfFile(currentFile.getPath()); //læser det der findes inde i filen
+                System.out.printf("\nBestilling: %s Beløb: %s kr.",
+                        currentFile.getName().substring(0,currentFile.getName().indexOf('.')),fileContent); //Vi "shaver" .txt af for læsbarhed
+                 //læser det der findes inde i den nuværende fil
                 totalRevenue += Integer.parseInt(fileProcessing.getContentOfFile(currentFile.getPath())); //udregner total omsætning
-                System.out.print(" kr.");
             }
         }
-    }
-
-    /**
-     *
-     */
-    public void getStatistics() {
-        System.out.printf("Total omsætning %d kr.\n",totalRevenue);
+        System.out.println("\nTotal omsætning: " + totalRevenue);
     }
 }
