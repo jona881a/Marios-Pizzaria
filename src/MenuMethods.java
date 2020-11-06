@@ -1,8 +1,4 @@
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -72,7 +68,7 @@ public class MenuMethods {
     }
 
     /**
-     * HER SKAL VI BRUGE FILEPROCESSING TIL AT SKRIVE TIL FILEN ORDERHISTORY FOR AT GEMME ALLE ORDRE OG DERES BELØB
+     * Måske skal vi rykke oprettelsen af en history file her?
      */
     public void orderHistoryLogging(){
 
