@@ -70,7 +70,7 @@ public class MenuMethods {
             System.out.println("Bestilling " + orderNumber + ": " + orders.get(i));
 
         }
-        System.out.println("Hviken bestilling vil du fjerne?");
+        System.out.println("Hviken bestilling vil kunden fortryde?");
         System.out.print("Bestilling nummer: ");
 
         int removeOrderNumber = scanner.nextInt();

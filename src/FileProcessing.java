@@ -10,6 +10,10 @@ public class FileProcessing {
 
     ArrayList<String> pizzasAndPrices = new ArrayList<>();
 
+    /**
+     *
+     * @param path
+     */
     public void readFile(String path) {
 
         try {
@@ -28,6 +32,11 @@ public class FileProcessing {
         }
     }
 
+    /**
+     *
+     * @param path
+     * @return
+     */
     public String getContentOfFile(String path) {
         StringBuilder sb = new StringBuilder();
 
@@ -49,6 +58,11 @@ public class FileProcessing {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param path
+     * @param totalOfOrder
+     */
     public void writeToFile(String path, int totalOfOrder) {
         try{
             FileWriter writeFile = new FileWriter(path);
@@ -61,6 +75,9 @@ public class FileProcessing {
         }
     }
 
+    /**
+     * Opretter et array der gemmer pizza'ernes navne og priser seperaret med komma
+     */
     public void getPizzaNamesAndPrices() {
 
         try {
@@ -80,6 +97,11 @@ public class FileProcessing {
         }
     }
 
+    /**
+     *
+     * @param fileName navent på den fil vi skal kalkulere beløbet på som samtidigt er ordrens pizza'er
+     * @return returnere det totale beløb af ordren
+     */
     public int calculateTotalOfOrder(String fileName) {
         int total = 0;
         int currentOrderItem = 0;
