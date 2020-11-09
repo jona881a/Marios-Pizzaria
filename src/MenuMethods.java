@@ -68,9 +68,7 @@ public class MenuMethods {
             break;
 
             case "nej":
-
                 break;
-
         }
     }
 
