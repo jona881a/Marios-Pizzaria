@@ -26,10 +26,11 @@ public class MenuMethods {
     public void addOrders(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nBestillinger:");
+        int orderNumber = 0;
 
         for(int i = 0; i < orders.size(); i++) {
 
-            int orderNumber = i+1;
+            orderNumber = i+1;
 
             if (orderNumber == 1) {
                 System.out.println("Bestilling laves: " + orders.get(i));
@@ -40,12 +41,13 @@ public class MenuMethods {
 
         System.out.print("\nTilføj ny bestilling? 'ja/nej' : ");
         String yesNo = scanner.nextLine();
+
         switch(yesNo) {
             case "ja":
             System.out.print("Indtast pizzanavn(e): ");
             String fileName = scanner.nextLine();
-            File order = new File(String.format("Resources/pizzaOrders/%s.txt", fileName));
-            File orderHistory = new File(String.format("Resources/orderHistory/%s.txt", fileName));
+            File order = new File(String.format("Resources/pizzaOrders/%s%d.txt", fileName, orderNumber));
+            File orderHistory = new File(String.format("Resources/orderHistory/%s%d.txt", fileName,orderNumber));
 
 
             fileProcessing.getPizzaNamesAndPrices(); //Indsætter navne og priser i en arrayliste
@@ -82,7 +84,7 @@ public class MenuMethods {
             System.out.println("Bestilling " + orderNumber + ": " + orders.get(i));
 
         }
-        System.out.println("Hviken bestilling vil kunden fortryde?");
+        System.out.println("Hviken bestilling skal fjernes?");
         System.out.print("Bestilling nummer: ");
 
         int removeOrderNumber = scanner.nextInt();
