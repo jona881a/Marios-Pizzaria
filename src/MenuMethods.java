@@ -15,14 +15,16 @@ public class MenuMethods {
      * Metode til at vise menu
      */
     public void showMenu(){
+        System.out.println("------------------------------------------------------------------------------------");
         fileProcessing.readFile("Resources/pizzaMenu");
+        System.out.println("------------------------------------------------------------------------------------");
     }
 
     /**
      *
      */
     public void addOrders(){
-
+        Scanner scanner = new Scanner(System.in);
         System.out.println("\nBestillinger:");
 
         for(int i = 0; i < orders.size(); i++) {
@@ -35,29 +37,39 @@ public class MenuMethods {
                 System.out.println("Bestilling afventer: " + orders.get(i));
             }
         }
-        System.out.print("Indtast pizzanavn(e): ");
-        Scanner scanner = new Scanner(System.in);
-        String fileName = scanner.nextLine();
-        File order = new File(String.format("Resources/pizzaOrders/%s.txt",fileName));
-        File orderHistory = new File(String.format("Resources/orderHistory/%s.txt",fileName));
+
+        System.out.print("\nTilføj ny bestilling? 'ja/nej' : ");
+        String yesNo = scanner.nextLine();
+        switch(yesNo) {
+            case "ja":
+            System.out.print("Indtast pizzanavn(e): ");
+            String fileName = scanner.nextLine();
+            File order = new File(String.format("Resources/pizzaOrders/%s.txt", fileName));
+            File orderHistory = new File(String.format("Resources/orderHistory/%s.txt", fileName));
 
 
-        fileProcessing.getPizzaNamesAndPrices(); //Indsætter navne og priser i en arrayliste
-        int totalOfOrder = fileProcessing.calculateTotalOfOrder(fileName); //Anvender arraylisten og kalkulere totalet af pizza'erne bestilt
-        fileProcessing.writeToFile(order.getPath(),totalOfOrder); //Skriver prisen til dokumentet
-        fileProcessing.writeToFile(orderHistory.getPath(),totalOfOrder); //Skriver det også på orderhistory
+            fileProcessing.getPizzaNamesAndPrices(); //Indsætter navne og priser i en arrayliste
+            int totalOfOrder = fileProcessing.calculateTotalOfOrder(fileName); //Anvender arraylisten og kalkulere totalet af pizza'erne bestilt
+            fileProcessing.writeToFile(order.getPath(), totalOfOrder); //Skriver prisen til dokumentet
+            fileProcessing.writeToFile(orderHistory.getPath(), totalOfOrder); //Skriver det også på orderhistory
 
-        try{
-            order.createNewFile();
-            orderHistory.createNewFile();
-        } catch(IOException e) {
-            e.printStackTrace();
+            try {
+                order.createNewFile();
+                orderHistory.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            orders.add(order);
+            ordersPlaced++;
+            System.out.println("pizza'er: " + fileName + " tilføjet til bestillinger" + " Bestillingspris: " + totalOfOrder);
+            break;
+
+            case "nej":
+
+                break;
+
         }
-
-        orders.add(order);
-        ordersPlaced++;
-        System.out.println("pizza'er: " + fileName + " tilføjet til bestillinger" + " Bestillingspris: " + totalOfOrder);
-
     }
 
     /**
