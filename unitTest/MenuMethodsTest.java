@@ -18,6 +18,7 @@ class MenuMethodsTest {
 
     @Test
     void removeOrder() {
+        menuMethods.removeOrder();
     }
 
     @Test
