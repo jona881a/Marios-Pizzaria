@@ -13,6 +13,7 @@ class MenuMethodsTest {
 
     @Test
     void addOrders() {
+        menuMethods.addOrders();
     }
 
     @Test
