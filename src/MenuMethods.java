@@ -21,9 +21,18 @@ public class MenuMethods {
     }
 
     /**
-     *
+     * Tilføjer en fil til pizzaOrders og orderHistory samt orders listen med ordrens pizzaer i filnavnet og prisen for ordren i filen
      */
     public void addOrders(){
+
+        //hvis der findes nogle ordre efter vi har lukket programmet indlæser vi dem i listen fordi de ikke er "gennemførte"
+        if(orders.size() == 0) {
+            File orderDirectory = new File("Resources/pizzaOrders");
+            if(orderDirectory != null) {
+                orders.addAll(Arrays.asList(orderDirectory.listFiles()));
+            }
+        }
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nBestillinger:");
         int orderNumber = 0;
@@ -73,7 +82,7 @@ public class MenuMethods {
     }
 
     /**
-     *
+     * Fjerne oprettede ordre både på listen og i mappen ved hjælp af ordrenummer
      */
     public void removeOrder(){
         Scanner scanner = new Scanner(System.in);
@@ -93,7 +102,7 @@ public class MenuMethods {
     }
 
     /**
-     *
+     * Giver os ordrehistorikken med ordrerens indhold og totale beløb samtidigt med at den giver en total omsætning af alle ordre
      */
     public void getOrderHistory(){
         int totalRevenue = 0;
